@@ -1,0 +1,35 @@
+[
+    {
+        "consignee": "李四111",
+        "fullAddress": "湖北省武汉市洪山区问哈大道222号11",
+        "id":1235689,
+        "isDefault":"0",
+        "phoneNum":13400000000,
+        "provincedId":90,
+        "regionId":421,
+        "userAdress":"武汉市江夏区动画111",
+        "userId":2
+    },
+    {
+        "consignee": "李四222",
+        "fullAddress": "湖北省武汉市洪山区问哈大道222号2222",
+        "id":1234,
+        "isDefault":"0",
+        "phoneNum":13400000000,
+        "provincedId":25,
+        "regionId":123,
+        "userAdress":"武汉市江夏区动画3222",
+        "userId":2
+    },
+    {
+        "consignee": "李四3333",
+        "fullAddress": "湖北省武汉市洪山区问哈大道222号333",
+        "id":12345555,
+        "isDefault":"1",
+        "phoneNum":13400000033,
+        "provincedId":26,
+        "regionId":567,
+        "userAdress":"武汉市江夏区动画333",
+        "userId":2
+    }
+]

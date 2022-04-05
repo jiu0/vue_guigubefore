@@ -1,0 +1,105 @@
+<template>
+  <div class="swiper-container" ref="mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" v-for="(slider,index) in skuImageList" :key="slider.id">
+        <img :src="slider.imgUrl" :class="{active:currentIndex===index}" @click="changeCurrentIndex(index)">
+      </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</template>
+
+<script>
+  import Swiper from 'swiper'
+  export default {
+    name: "ImageList",
+    props:['skuImageList'],
+    data(){
+       return{
+          currentIndex:0,
+       }
+    },
+    watch:{
+        skuImageList(){
+          // handler 方法执行表示 bannerList 数组已经有了数据 但不代表 v-for 已经循坏完毕了 
+           this.$nextTick(()=>{  // nextTick 表示 v-for已经循坏完毕了
+             var mySwiper = new Swiper(this.$refs.mySwiper,{
+                //loop:true, // 是否循坏轮播
+                navigation:{
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev",
+                },
+                //显示几个图片设置 
+                slidesPerView:3,
+                // 轮播一次 滚动几个过去
+                slidesPerGroup:1
+             })
+           })
+       } 
+    },
+    methods:{
+       changeCurrentIndex(index){
+          this.currentIndex = index;
+          this.$bus.$emit('getIndex',this.currentIndex)
+       }
+    }
+  }
+</script>
+
+<style lang="less" scoped>
+  .swiper-container {
+    height: 56px;
+    width: 412px;
+    box-sizing: border-box;
+    padding: 0 12px;
+
+    .swiper-slide {
+      width: 56px;
+      height: 56px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #ccc;
+        padding: 2px;
+        width: 50px;
+        height: 50px;
+        display: block;
+
+        &.active {
+          border: 2px solid #f60;
+          padding: 1px;
+        }
+        // &:hover {
+        //   border: 2px solid #f60;
+        //   padding: 1px;
+        // }
+      }
+    }
+
+    .swiper-button-next {
+      left: auto;
+      right: 0;
+    }
+
+    .swiper-button-prev {
+      left: 0;
+      right: auto;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      box-sizing: border-box;
+      width: 12px;
+      height: 56px;
+      background: rgb(235, 235, 235);
+      border: 1px solid rgb(204, 204, 204);
+      top: 0;
+      margin-top: 0;
+      &::after {
+        font-size: 12px;
+      }
+    }
+  }
+</style>
